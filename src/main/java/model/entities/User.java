@@ -1,17 +1,21 @@
-package model;
+package model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.Table;
 
 @Entity
+@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "USUARIO")
 public class User {
+	
 	@Id
-	@GeneratedValue(strategy = GenerationType.SEQUENCE)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id_usuario")
 	private Integer idUsuario;
 	
@@ -21,8 +25,8 @@ public class User {
 	@Column(name = "login", unique = true)
 	private String login;
 	
-	@Column(name = "senha")
-	private String senha;
+	@Column(name = "password")
+	private String password;
 	
 	@Column(name = "email")
 	private String email;
@@ -31,11 +35,11 @@ public class User {
 		super();
 	}
 
-	public User(String nome, String login, String senha, String email) {
+	public User(String nome, String login, String password, String email) {
 		super();
 		this.nome = nome;
 		this.login = login;
-		this.senha = senha;
+		this.password = password;
 		this.email = email;
 	}
 
@@ -46,7 +50,7 @@ public class User {
 	public void setIdUsuario(Integer idUsuario) {
 		this.idUsuario = idUsuario;
 	}
-	
+
 	public String getNome() {
 		return nome;
 	}
@@ -63,12 +67,12 @@ public class User {
 		this.login = login;
 	}
 
-	public String getSenha() {
-		return senha;
+	public String getPassword() {
+		return password;
 	}
 
-	public void setSenha(String senha) {
-		this.senha = senha;
+	public void setPassword(String password) {
+		this.password = password;
 	}
 
 	public String getEmail() {
@@ -80,4 +84,5 @@ public class User {
 	}
 	
 	
+
 }

@@ -10,4 +10,6 @@ public abstract class GenericMBean {
 	public String forward(String page){
 		return page+"?faces-redirect=true";
 	}
+	
+	
 }
