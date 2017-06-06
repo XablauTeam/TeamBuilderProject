@@ -1,22 +1,27 @@
-# Compiled class file
+/build/
+
+### Java template
 *.class
 
-# Log file
-*.log
+### Eclipse Template
+*.pydevproject
+.metadata
+.gradle
+bin/
+tmp/
+*.tmp
+*.bak
+*.swp
+*~.nib
+local.properties
+.settings/
+.loadpath
+.classpath
+.tern-project
 
-# BlueJ files
-*.ctxt
+# Eclipse Core
+.project
 
-# Mobile Tools for Java (J2ME)
-.mtj.tmp/
-
-# Package Files #
-*.jar
-*.war
-*.ear
-*.zip
-*.tar.gz
-*.rar
-
-# virtual machine crash logs, see http://www.java.com/en/download/help/error_hotspot.xml
-hs_err_pid*
+# External tool builders
+.externalToolBuilders/
+/target/
