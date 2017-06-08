@@ -69,6 +69,13 @@
 			<artifactId>commons-validator</artifactId>
 			<version>1.6</version>
 		</dependency>
+		<!-- https://mvnrepository.com/artifact/org.jboss.spec.javax.ejb/jboss-ejb-api_3.1_spec -->
+<dependency>
+    <groupId>org.jboss.spec.javax.ejb</groupId>
+    <artifactId>jboss-ejb-api_3.1_spec</artifactId>
+    <version>1.0.2.Final</version>
+</dependency>
+		
 
 	</dependencies>
 

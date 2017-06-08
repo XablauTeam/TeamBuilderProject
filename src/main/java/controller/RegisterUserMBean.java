@@ -1,7 +1,5 @@
 package controller;
 
-import java.util.Iterator;
-
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -44,12 +42,7 @@ public class RegisterUserMBean extends GenericMBean {
 
 	public boolean validaCampos() {
 
-		FacesContext context = FacesContext.getCurrentInstance();
-		Iterator<FacesMessage> it = context.getMessages();
-		while (it.hasNext()) {
-			it.next();
-			it.remove();
-		}
+		limpaErros();
 
 		if (email.isEmpty() || login.isEmpty() || senha.isEmpty() || nome.isEmpty()) {
 			return false;

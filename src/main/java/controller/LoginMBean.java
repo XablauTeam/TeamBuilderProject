@@ -1,11 +1,8 @@
 package controller;
 
-import java.util.Iterator;
-
-import javax.faces.application.FacesMessage;
+import javax.ejb.EJB;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
-import javax.faces.context.FacesContext;
 
 import business.LoginBean;
 import business.exceptions.UsuarioSenhaException;
@@ -14,8 +11,9 @@ import model.entities.User;
 @ManagedBean(name = "loginMBean")
 @SessionScoped
 public class LoginMBean extends GenericMBean {
-
-	LoginBean loginBean = new LoginBean();
+	
+	@EJB
+	LoginBean loginBean;
 
 	private String login;
 	private String senha;
@@ -26,19 +24,14 @@ public class LoginMBean extends GenericMBean {
 			this.user = loginBean.login(getLogin(), getSenha()); 
 			return forward("principal.xhtml");
 		} catch (UsuarioSenhaException e) {
-			FacesContext.getCurrentInstance().addMessage(null, new FacesMessage(e.getMessage()));
+			incluirErro(e.getMessage());
 			return "";
 		}
 	}
 
 	public boolean validaCampos() {
 
-		FacesContext context = FacesContext.getCurrentInstance();
-		Iterator<FacesMessage> it = context.getMessages();
-		while (it.hasNext()) {
-			it.next();
-			it.remove();
-		}
+		limpaErros();
 
 		if (login.isEmpty() || senha.isEmpty()) {
 			return false;

@@ -2,12 +2,17 @@ package model.persistence.service;
 
 import java.util.List;
 
+import javax.ejb.Stateless;
+
 import model.entities.User;
 import model.persistence.dao.UserDAO;
 
+@Stateless
 public class UserService {
+	
 	private static UserDAO userDAO;
-
+	
+	
 	public UserService() {
 		userDAO = new UserDAO();
 	}
