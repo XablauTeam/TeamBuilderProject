@@ -37,8 +37,6 @@ public class LolProfileMBean extends GenericMBean {
 			player = playerBean.findById(user.getIdUsuario());
 		} catch (BusinessException e) {
 			player = new LolPlayer();
-
-			
 		}
 	}
 
@@ -46,6 +44,7 @@ public class LolProfileMBean extends GenericMBean {
 		try {
 			player.setStatus(PlayerStatus.SEARCHING_TEAM);
 			playerBean.incluirPlayer(user, player);
+			user.setPlayer(player);
 		} catch (Exception e) {
 			incluirErro(e.getMessage());
 		}

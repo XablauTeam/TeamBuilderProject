@@ -5,6 +5,7 @@ import javax.ejb.Stateless;
 
 import api.AbstractProfile;
 import api.FacadeAPI;
+import api.exceptions.ConnectionException;
 import business.exceptions.BusinessException;
 import model.entities.LolPlayer;
 import model.entities.User;
@@ -27,22 +28,25 @@ public class PlayerBean {
 			throw new BusinessException("Player não encotrado.");
 	}
 
-	public void incluirPlayer(User user, LolPlayer lolPlayer) throws Exception {
+	public void incluirPlayer(User user, LolPlayer lolPlayer) throws ConnectionException {
 				
 		FacadeAPI api = new FacadeAPI();
 		AbstractProfile absProfile = api.getSummoner(lolPlayer.getPlayerName(), lolPlayer.getRegion().name());
 		
+		if(absProfile != null){
+			
+			lolPlayer.setGamePlayerID(absProfile.getId());
+			lolPlayer.setPlayerLevel(absProfile.getLevel());
+			lolPlayer.setPlayerName(absProfile.getName());
+			
+			User auxUser = userService.findById(user.getIdUsuario());
+			auxUser.setPlayer(lolPlayer);
+			userService.update(auxUser);
+			
+		}else{
+			throw new ConnectionException("Game Profile não localizado.");
+		}
 		
-		//lolPlayer.setIdUsuario(user.getIdUsuario());
-		
-		
-		lolPlayer.setGamePlayerID(absProfile.getId());
-		lolPlayer.setPlayerLevel(absProfile.getLevel());
-		lolPlayer.setPlayerName(absProfile.getName());
-		
-		User auxUser = userService.findById(user.getIdUsuario());
-		auxUser.setPlayer(lolPlayer);
-		userService.update(auxUser);
 	}
 
 }
