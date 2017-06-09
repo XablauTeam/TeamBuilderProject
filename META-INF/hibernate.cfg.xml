@@ -19,7 +19,6 @@
 		<property name="format_sql">true</property>
 
 		<mapping class="model.entities.User" />
-		
 		<mapping class="model.entities.LolPlayer" />
 	
 	</session-factory>

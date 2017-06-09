@@ -19,3 +19,9 @@ create table LOLPLAYER (playerId bigint, playerLevel bigint, playerName varchar(
 create table USUARIO (id_usuario integer not null auto_increment, email varchar(255), login varchar(255), nome varchar(255), password varchar(255), primary key (id_usuario)) engine=MyISAM;
 alter table USUARIO add constraint UK_fiaj0vs5nduv6knel78ihnfs3 unique (login);
 alter table LOLPLAYER add constraint FK39g70tnggfh74crwesc24doyk foreign key (id_usuario) references USUARIO (id_usuario);
+drop table if exists LOLPLAYER;
+drop table if exists USUARIO;
+create table LOLPLAYER (playerId bigint, playerLevel bigint, playerName varchar(255), playerStatus varchar(255), lolregion varchar(255), lolrole varchar(255), id_usuario integer not null, primary key (id_usuario)) engine=MyISAM;
+create table USUARIO (id_usuario integer not null auto_increment, email varchar(255), login varchar(255), nome varchar(255), password varchar(255), primary key (id_usuario)) engine=MyISAM;
+alter table USUARIO add constraint UK_fiaj0vs5nduv6knel78ihnfs3 unique (login);
+alter table LOLPLAYER add constraint FK39g70tnggfh74crwesc24doyk foreign key (id_usuario) references USUARIO (id_usuario);
