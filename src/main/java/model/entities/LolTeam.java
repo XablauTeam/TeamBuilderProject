@@ -2,25 +2,33 @@ package model.entities;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.JoinColumn;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
 @Table(name="LOLTEAM")
 public class LolTeam extends AbstractTeam {
 	
-	@Column(name = "top")
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "top", referencedColumnName = "id_player")
 	private LolPlayer top;
 	
-	@Column(name = "jungler")
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "jungler", referencedColumnName = "id_player")
 	private LolPlayer jungler;
 	
-	@Column(name = "mid")
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "mid", referencedColumnName = "id_player")
 	private LolPlayer mid;
 	
-	@Column(name = "support")
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "support", referencedColumnName = "id_player")
 	private LolPlayer support;
 	
-	@Column(name = "bottom")
+	@OneToOne(fetch=FetchType.EAGER)
+	@JoinColumn(name = "bottom", referencedColumnName = "id_player")
 	private LolPlayer bottom;
 	
 	public LolTeam(){

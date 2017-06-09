@@ -8,7 +8,7 @@
 		<property name="hibernate.connection.driver_class">com.mysql.jdbc.Driver</property>
 		<property name="hibernate.connection.url">jdbc:mysql://localhost/teambuilder?useSSL=false&amp;createDatabaseIfNotExist=true</property>
 		<property name="hibernate.connection.username">root</property>
-		<property name="hibernate.connection.password">admin</property>
+		<property name="hibernate.connection.password">alastor12</property>
 
 
 		<property name="dialect">org.hibernate.dialect.MySQL5Dialect</property>
@@ -20,6 +20,7 @@
 
 		<mapping class="model.entities.User" />
 		<mapping class="model.entities.LolPlayer" />
+		<mapping class="model.entities.LolTeam" />
 	
 	</session-factory>
 </hibernate-configuration>
