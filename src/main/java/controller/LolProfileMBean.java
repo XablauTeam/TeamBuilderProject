@@ -38,12 +38,13 @@ public class LolProfileMBean extends GenericMBean {
 		} catch (BusinessException e) {
 			player = new LolPlayer();
 
-			// incluirErro(e.getMessage());
+			
 		}
 	}
 
 	public String cadastrarPlayer() {
 		try {
+			player.setStatus(PlayerStatus.SEARCHING_TEAM);
 			playerBean.incluirPlayer(user, player);
 		} catch (Exception e) {
 			incluirErro(e.getMessage());

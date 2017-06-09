@@ -21,7 +21,7 @@ public class SummonerImpl extends GenericAPI {
 		}
 		
 		try{
-			String url = getUrl() + region + EApiVersion.SUMMONER.getVersion() + "summoner/by-name/"
+			String url = getUrl(region) + EApiVersion.SUMMONER.getVersion() + "summoner/by-name/"
 					+ String.join(",", summoners).trim().toLowerCase() + "?api_key=" + getToken();
 			
 			System.out.println(url);

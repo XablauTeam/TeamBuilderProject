@@ -1,22 +1,31 @@
 package model.entities;
 
 import javax.persistence.Column;
-import javax.persistence.MappedSuperclass;
-import javax.persistence.PrimaryKeyJoinColumn;
-import javax.persistence.Enumerated;
 import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
+import javax.persistence.MappedSuperclass;
 
 import business.PlayerStatus;
 
 
 @MappedSuperclass
-@PrimaryKeyJoinColumn(name = "id_usuario")
-public abstract class AbstractPlayer extends User {
+@Inheritance(strategy=InheritanceType.JOINED)
+public abstract class AbstractPlayer {
+	
+	@Id
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
+	@Column(name = "id_player")
+	private Integer idPlayer;
+	
 	
 	@Column(name = "playerName")
 	private String playerName;
-	@Column(name = "playerId")
-	private long playerId;
+	
 	@Column(name = "playerLevel")
 	private long playerLevel;
 	
@@ -24,20 +33,24 @@ public abstract class AbstractPlayer extends User {
 	@Enumerated(EnumType.STRING)
 	private PlayerStatus status;
 	
+	//Identificado do player no jogo
+	@Column(name="gamePlayerID")
+	private long gamePlayerID;
+	
+	public Integer getIdPlayer() {
+		return idPlayer;
+	}
+
+	public void setIdPlayer(Integer idPlayer) {
+		this.idPlayer = idPlayer;
+	}
+
 	public String getPlayerName() {
 		return playerName;
 	}
 
 	public void setPlayerName(String playerName) {
 		this.playerName = playerName;
-	}
-
-	public long getPlayerId() {
-		return playerId;
-	}
-
-	public void setPlayerId(long playerId) {
-		this.playerId = playerId;
 	}
 
 	public long getPlayerLevel() {
@@ -55,7 +68,14 @@ public abstract class AbstractPlayer extends User {
 	public void setStatus(PlayerStatus status) {
 		this.status = status;
 	}
-	
+
+	public long getGamePlayerID() {
+		return gamePlayerID;
+	}
+
+	public void setGamePlayerID(long gamePlayerID) {
+		this.gamePlayerID = gamePlayerID;
+	}
 	
 	
 }

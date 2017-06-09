@@ -1,16 +1,15 @@
 package model.entities;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.Inheritance;
-import javax.persistence.InheritanceType;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Inheritance(strategy=InheritanceType.JOINED)
 @Table(name = "USUARIO")
 public class User {
 	
@@ -30,6 +29,9 @@ public class User {
 	
 	@Column(name = "email")
 	private String email;
+	
+	@OneToOne(cascade = CascadeType.ALL, targetEntity=LolPlayer.class)
+	private LolPlayer player;
 
 	public User() {
 		super();
@@ -82,7 +84,13 @@ public class User {
 	public void setEmail(String email) {
 		this.email = email;
 	}
-	
-	
+
+	public LolPlayer getPlayer() {
+		return player;
+	}
+
+	public void setPlayer(LolPlayer player) {
+		this.player = player;
+	}
 
 }

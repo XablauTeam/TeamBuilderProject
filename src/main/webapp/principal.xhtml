@@ -18,12 +18,12 @@
 								<h:commandLink class="" action="#{lolProfileMBean.logout()}"
 									value="Logout" />
 							</h:form></li>
-						<li><c:if test="${empty lolProfileMBean.player.nome}">
+						<li><c:if test="${empty lolProfileMBean.player.playerName}">
 								<h:form>
 									<a class="modal-trigger" href="#modal1">Cadastrar Profile</a>
 
 								</h:form>
-							</c:if> <c:if test="${not empty lolProfileMBean.player.nome}">
+							</c:if> <c:if test="${not empty lolProfileMBean.player.playerName}">
 								<h:form>
 									<a class="modal-trigger" href="#modal2">Atualizar Profile</a>
 								</h:form>
@@ -45,7 +45,10 @@
 			<div id="modal1" class="modal">
 
 				<div class="modal-content">
-
+					<h:messages
+								styleClass="errorMessage card-panel red lighten-2 white-text"
+								globalOnly="true">
+							</h:messages>
 					<h5>Incluir Profile</h5>
 					<div class="divider"></div>
 					<h:panelGroup id="incluirPerfilForm">
@@ -73,8 +76,7 @@
 								</div>
 								<div class='col s6'>
 									<label for='incluirStatusProfile'>Status</label>
-									<h:selectOneMenu id="incluirStatusProfile" value="#{lolProfileMBean.player.status}" styleClass="selectContainer">
-										<f:selectItem itemValue="" itemLabel="Selecione" />
+									<h:selectOneMenu id="incluirStatusProfile" value="#{lolProfileMBean.player.status}" styleClass="selectContainer" disabled="true">
 										<f:selectItems value="#{lolProfileMBean.playerStatus}" var="_status" itemLabel="#{_status.name}" itemValue="#{_status}" />
 									</h:selectOneMenu>
 								</div>

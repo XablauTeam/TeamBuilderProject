@@ -8,8 +8,6 @@ public class GenericAPI {
 
 	private static String token = "b1b9de11-bf45-4ee0-851a-aa31f0a1b7c2";
 
-	private static final String url = "https://br.api.riotgames.com/api/lol/";
-
 	private ConnectorAPI conexao = new ConnectorAPI();
 
 	public ConnectorAPI getConexao() {
@@ -38,8 +36,8 @@ public class GenericAPI {
 		return token;
 	}
 
-	public static String getUrl() {
-		return url;
+	public static String getUrl(String region) {
+		return "https://"+region+".api.riotgames.com/api/lol/"+region;
 	}
 
 	public boolean containRegion(String region) {
