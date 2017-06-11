@@ -9,7 +9,7 @@ public class SummonerDTO extends AbstractProfile {
 	
 	
 	public SummonerDTO(int profileIconId, long revisionDate, long id, String name, long summonerLevel) {
-		super(name, summonerLevel, id);
+		super(name, id, summonerLevel);
 		this.profileIconId = profileIconId;
 		this.revisionDate = revisionDate;
 		

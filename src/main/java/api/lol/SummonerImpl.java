@@ -13,8 +13,8 @@ public class SummonerImpl extends GenericAPI {
 
 	public SummonerDTO summonerByName(String[] summoners, String region) throws ConnectionException {
 
-		if (summoners.length > 40) {
-			throw new ConnectionException("Não é possivel consultar mais de 40 summoners!");
+		if (summoners.length > 1) {
+			throw new ConnectionException("Não é possivel consultar mais de 1 profile!");
 		}
 		if (!containRegion(region.toLowerCase())) {
 			throw new ConnectionException("Região inválida!");
@@ -31,10 +31,10 @@ public class SummonerImpl extends GenericAPI {
 
 			sum = gson.fromJson(getConexao().getData(url), new TypeToken<Map<String, SummonerDTO>>() {
 			}.getType());
-			
+			System.out.println("Level capturado >>>" +sum.get(String.join(",", summoners).trim().toLowerCase()).getLevel());
 			return sum.get(String.join(",", summoners).trim().toLowerCase());
 		}catch (Exception e) {
-			throw new ConnectionException(e.getMessage());
+			throw new ConnectionException("Profile não encontrado.");
 		}
 		
 	}

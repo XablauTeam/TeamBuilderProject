@@ -4,13 +4,13 @@ public abstract class AbstractProfile {
 
 	private String name;
 	private long id;
-	private long level;
+	private long summonerLevel;
 
-	public AbstractProfile(String name, long id, long level) {
+	public AbstractProfile(String name, long id, long summonerLevel) {
 		super();
 		this.name = name;
 		this.id = id;
-		this.level = level;
+		this.summonerLevel = summonerLevel;
 	}
 
 	public String getName() {
@@ -30,11 +30,11 @@ public abstract class AbstractProfile {
 	}
 
 	public long getLevel() {
-		return level;
+		return summonerLevel;
 	}
 
-	public void setLevel(long level) {
-		this.level = level;
+	public void setLevel(long summonerLevel) {
+		this.summonerLevel = summonerLevel;
 	}
 
 }
