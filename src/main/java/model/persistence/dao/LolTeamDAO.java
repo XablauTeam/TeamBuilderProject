@@ -1,5 +1,7 @@
 package model.persistence.dao;
 
+import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
@@ -8,7 +10,6 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
-import model.entities.LolTeam;
 import model.entities.LolTeam;
 
 public class LolTeamDAO implements GenericDAO<LolTeam, Integer> {
@@ -68,6 +69,12 @@ public class LolTeamDAO implements GenericDAO<LolTeam, Integer> {
 		return player;
 	}
 
+	public List<LolTeam> findByField(String field, Object value){
+		@SuppressWarnings("unchecked")
+		ArrayList<LolTeam> arrayList = (ArrayList<LolTeam>) getCurrentSession().get(field, (Serializable) value);
+		return arrayList;
+	}
+	
 	public void insert(LolTeam player) {
 		getCurrentSession().save(player);
 	}

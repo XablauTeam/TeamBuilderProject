@@ -11,11 +11,15 @@ import javax.faces.bean.SessionScoped;
 
 import business.PlayerBean;
 import business.PlayerStatus;
+import business.TeamBean;
 import business.exceptions.BusinessException;
 import business.lol.LolRegioes;
 import business.lol.LolRole;
+import model.entities.AbstractTeam;
 import model.entities.LolPlayer;
+import model.entities.LolTeam;
 import model.entities.User;
+import model.persistence.service.UserService;
 
 @ManagedBean(name = "lolProfileMBean")
 @SessionScoped
@@ -28,8 +32,13 @@ public class LolProfileMBean extends GenericMBean {
 
 	private LolPlayer player;
 
+	private LolTeam team;
+
 	@EJB
 	PlayerBean playerBean;
+
+	@EJB
+	TeamBean teamBean;
 
 	@PostConstruct
 	public void onLoad() {
@@ -45,6 +54,22 @@ public class LolProfileMBean extends GenericMBean {
 			player.setStatus(PlayerStatus.SEARCHING_TEAM);
 			playerBean.incluirPlayer(user, player);
 			user.setPlayer(player);
+		} catch (Exception e) {
+			incluirErro(e.getMessage());
+		}
+		return "";
+	}
+
+	public String procurarTime() {
+		AbstractTeam team;
+		try {
+			if(user.getPlayer().getTeamID() != 0)
+				teamBean.removePlayerFromTeam(user.getPlayer());
+			team = teamBean.findTeam(user.getPlayer());
+			if(team == null)
+				team = teamBean.createNewTeam(user.getPlayer());
+			teamBean.insertPlayerInTeam(user.getPlayer(), team);
+			
 		} catch (Exception e) {
 			incluirErro(e.getMessage());
 		}
@@ -67,6 +92,14 @@ public class LolProfileMBean extends GenericMBean {
 		this.player = player;
 	}
 
+	public LolTeam getTeam() {
+		return team;
+	}
+
+	public void setTeam(LolTeam team) {
+		this.team = team;
+	}
+
 	public List<PlayerStatus> getPlayerStatus() {
 		List<PlayerStatus> itens = new ArrayList<PlayerStatus>();
 		for (PlayerStatus stat : PlayerStatus.values()) {
@@ -74,7 +107,7 @@ public class LolProfileMBean extends GenericMBean {
 		}
 		return itens;
 	}
-	
+
 	public List<LolRole> getRoles() {
 		List<LolRole> itens = new ArrayList<LolRole>();
 		for (LolRole role : LolRole.values()) {
@@ -82,7 +115,7 @@ public class LolProfileMBean extends GenericMBean {
 		}
 		return itens;
 	}
-	
+
 	public List<LolRegioes> getRegioes() {
 		List<LolRegioes> itens = new ArrayList<LolRegioes>();
 		for (LolRegioes regiao : LolRegioes.values()) {
