@@ -22,7 +22,6 @@ public abstract class AbstractPlayer {
 	@Column(name = "id_player")
 	private Integer idPlayer;
 	
-	
 	@Column(name = "playerName")
 	private String playerName;
 	

@@ -31,11 +31,13 @@
 										<a class="modal-trigger" href="#modal2">Atualizar Profile</a>
 									</h:form>
 								</c:if></li>
-				
+
 							<li><h:form>
-								<a class="modal-trigger" href="#modal3">Procurar Time</a>
-							</h:form>
-							</li>
+									<a class="modal-trigger" href="#modal3">Procurar Time</a>
+								</h:form></li>
+							<li><h:form>
+									<a class="modal-trigger" href="#modal4">Visualizar Time</a>
+								</h:form></li>
 						</ul>
 					</div>
 				</h:panelGroup>
@@ -144,16 +146,81 @@
 					<h:panelGroup id="procurarTime">
 						<h:form>
 							<div class='row'>
-								
-								
+								<h5 class='center-align col s12 m4 l8 valign-wrapper'>
+									Junte-se a um time com jogadores que também estão interessados
+									em alcançar o topo do ranking!</h5>
 							</div>
-							<h:commandButton class="btn waves-effect waves-light center-align col s12 m4 l8"
-								action="#{lolProfileMBean.cadastrarPlayer()}" value="Atualizar" />
+							<h:commandButton
+								class="btn waves-effect waves-light center-align col s12 m4 l8 valign-wrapper"
+								action="#{lolProfileMBean.procurarTime()}" value="Clique Aqui" />
 						</h:form>
 					</h:panelGroup>
 				</div>
 			</div>
-			<!-- Fim Modal Cadastrar Player -->
+			<!-- Fim Modal Buscar Time -->
+			<!-- Modal Visualizar Time -->
+			<div id="modal4" class="modal">
+
+				<div class="modal-content">
+
+					<h5>Procurar Time</h5>
+					<div class="divider"></div>
+					<h:panelGroup id="procurarTime">
+						<h:form>
+							<table class = 'centered highlight responsive-table'>
+								<thead>
+									<tr>
+										<th></th>
+										<th>Top</th>
+										<th>Jungler</th>
+										<th>Mid</th>
+										<th>Support</th>
+										<th>Bottom</th>
+									</tr>
+								</thead>
+
+								<tbody>
+									<tr>
+										<td>Game Id</td>
+										<td>Level</td>
+									</tr>
+									<tr>
+										<c:if test="${not empty lolProfileMBean.team.top}">
+										<td>#{lolProfileMBean.team.top.playerName}</td>
+										<td>#{lolProfileMBean.team.top.playerLevel}</td>
+										</c:if>
+									</tr>
+									<tr>
+									<c:if test="${not empty lolProfileMBean.team.jungler}">
+										<td>#{lolProfileMBean.team.jungler.playerName}</td>
+										<td>#{lolProfileMBean.team.jungler.playerLevel}</td>
+										</c:if>
+									</tr>
+									<tr>
+									<c:if test="${not empty lolProfileMBean.team.mid}">
+										<td>#{lolProfileMBean.team.mid.playerName}</td>
+										<td>#{lolProfileMBean.team.mid.playerLevel}</td>
+									</c:if>
+									</tr>
+									<tr>
+									<c:if test="${not empty lolProfileMBean.team.support}">
+										<td>#{lolProfileMBean.team.support.playerName}</td>
+										<td>#{lolProfileMBean.team.support.playerLevel}</td>
+									</c:if>
+									</tr>
+									<tr>
+									<c:if test="${not empty lolProfileMBean.team.bottom}">
+										<td>#{lolProfileMBean.team.bottom.playerName}</td>
+										<td>#{lolProfileMBean.team.bottom.playerLevel}</td>
+									</c:if>
+									</tr>
+								</tbody>
+							</table>
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+			<!-- Fim Modal Visualizar Time -->
 
 		</ui:define>
 		<ui:define name="javascript">

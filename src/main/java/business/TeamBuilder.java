@@ -1,12 +1,12 @@
 package business;
 
-import javax.ejb.Local;
+import javax.ejb.Remote;
 
 import business.exceptions.CannotInsertException;
 import model.entities.AbstractPlayer;
 import model.entities.AbstractTeam;
 
-@Local
+@Remote
 public interface TeamBuilder {
 
 	public AbstractTeam findTeam(AbstractPlayer player);

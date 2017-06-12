@@ -11,10 +11,10 @@ import javax.faces.bean.SessionScoped;
 
 import business.PlayerBean;
 import business.PlayerStatus;
-import business.TeamBean;
 import business.exceptions.BusinessException;
 import business.lol.LolRegioes;
 import business.lol.LolRole;
+import business.lol.LolTeamBean;
 import model.entities.AbstractTeam;
 import model.entities.LolPlayer;
 import model.entities.LolTeam;
@@ -38,7 +38,7 @@ public class LolProfileMBean extends GenericMBean {
 	PlayerBean playerBean;
 
 	@EJB
-	TeamBean teamBean;
+	LolTeamBean teamBean;
 
 	@PostConstruct
 	public void onLoad() {
@@ -61,13 +61,12 @@ public class LolProfileMBean extends GenericMBean {
 	}
 
 	public String procurarTime() {
-		AbstractTeam team;
 		try {
 			if(user.getPlayer().getTeamID() != 0)
 				teamBean.removePlayerFromTeam(user.getPlayer());
-			team = teamBean.findTeam(user.getPlayer());
+			team = (LolTeam) teamBean.findTeam(user.getPlayer());
 			if(team == null)
-				team = teamBean.createNewTeam(user.getPlayer());
+				team = (LolTeam) teamBean.createNewTeam(user.getPlayer());
 			teamBean.insertPlayerInTeam(user.getPlayer(), team);
 			
 		} catch (Exception e) {
