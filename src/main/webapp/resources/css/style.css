@@ -18,3 +18,5 @@ main {
 }
 
 .modal { width: 50% !important ; height:65% !important; max-height: 100% !important ; ;}
+
+.modalshort { width: 25% !important ; height:25% !important; max-height: 50% !important ; ;}
