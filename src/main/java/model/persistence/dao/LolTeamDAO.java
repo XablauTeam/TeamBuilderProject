@@ -10,6 +10,7 @@ import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 
+import model.entities.LolPlayer;
 import model.entities.LolTeam;
 
 public class LolTeamDAO implements GenericDAO<LolTeam, Integer> {
@@ -41,6 +42,7 @@ public class LolTeamDAO implements GenericDAO<LolTeam, Integer> {
 	
 	private static SessionFactory getSessionFactory() {
 		Configuration configuration = new Configuration().configure("/hibernate.cfg.xml");
+		configuration.addAnnotatedClass(LolPlayer.class);
 		configuration.addAnnotatedClass(LolTeam.class);
 		StandardServiceRegistryBuilder builder = new StandardServiceRegistryBuilder()
 				.applySettings(configuration.getProperties());
