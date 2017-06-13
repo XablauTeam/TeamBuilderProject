@@ -32,10 +32,9 @@
 								</c:if></li>
 
 							<li><h:form>
+								<c:if test="${not empty lolProfileMBean.user.player}">
 									<a class="modal-trigger" href="#modal3">Procurar Time</a>
-								</h:form></li>
-							<li><h:form>
-									<a class="modal-trigger" href="#modal4">Visualizar Time</a>
+									</c:if>
 								</h:form></li>
 						</ul>
 					</div>
@@ -49,121 +48,60 @@
 					<!-- Teal page content  -->
 					<span class="flow-text"> Bem vindo
 						#{lolProfileMBean.user.nome}, </span>
-				</div>
-
-
-
-			</div>
-
-			<!--Modal Incluir Profile -->
-			<div id="modal1" class="modal">
-
-				<div class="modal-content">
-
-					<h5>Incluir Profile</h5>
-					<div class="divider"></div>
-					<h:panelGroup id="incluirPerfilForm">
-						<h:form>
-							<div class='row'>
-								<div class='input-field col s6'>
-									<h:inputText class='validate' type="text" name="incluirProfile"
-										id='incluirProfile'
-										value="#{lolProfileMBean.player.playerName}" />
-									<label for="incluirProfile">Game Profile</label>
-								</div>
-								<div class='col s6'>
-									<label for='IncluirRegiaoProfile'>Região</label>
-									<h:selectOneMenu id="IncluirRegiaoProfile"
-										value="#{lolProfileMBean.player.region}">
-										<f:selectItem itemValue="" itemLabel="Selecione" />
-										<f:selectItems value="#{lolProfileMBean.regioes}"
-											var="_regioes" itemLabel="#{_regioes.name}"
-											itemValue="#{_regioes}" />
-									</h:selectOneMenu>
-								</div>
-								<div class='col s6'>
-									<label for='IncluirRoleProfile'>Posição</label>
-									<h:selectOneMenu id="IncluirRoleProfile"
-										value="#{lolProfileMBean.player.role}">
-										<f:selectItem itemValue="" itemLabel="Selecione" />
-										<f:selectItems value="#{lolProfileMBean.roles}" var="_role"
-											itemLabel="#{_role.name}" itemValue="#{_role}" />
-									</h:selectOneMenu>
-								</div>
-								<div class='col s6'>
-									<label for='incluirStatusProfile'>Status</label>
-									<h:selectOneMenu id="incluirStatusProfile"
-										value="#{lolProfileMBean.player.status}"
-										styleClass="selectContainer" disabled="true">
-										<f:selectItems value="#{lolProfileMBean.playerStatus}"
-											var="_status" itemLabel="#{_status.name}"
-											itemValue="#{_status}" />
-									</h:selectOneMenu>
-								</div>
-							</div>
-							<h:commandButton class="btn waves-effect waves-light"
-								action="#{lolProfileMBean.cadastrarPlayer()}" value="Gravar">
-
-							</h:commandButton>
-						</h:form>
-					</h:panelGroup>
-				</div>
-			</div>
-			<!-- Fim Modal Incluir Profile -->
-			<!-- Modal Atualizar Profile -->
-			<div id="modal2" class="modal">
-
-				<div class="modal-content">
-
-					<h5>Atualizar Profile</h5>
-					<div class="divider"></div>
-					<h:panelGroup id="atualizarPerfilForm">
-						<h:form>
-							<div class='row'>
-								<div class='input-field col s6'>
-									<h:inputText class='validate' type="text"
-										name="atualizarProfile" id='atualizarProfile'
-										value="#{lolProfileMBean.player.playerName}" />
-									<label for="atualizarProfile">Game Profile</label>
-								</div>
-								<div class='input-field col s6'></div>
-							</div>
-							<h:commandButton class="btn waves-effect waves-light"
-								action="#{lolProfileMBean.cadastrarPlayer()}" value="Atualizar" />
-						</h:form>
-					</h:panelGroup>
-				</div>
-			</div>
-			<!-- Fim Modal Cadastrar Player -->
-			<!-- Modal Buscar Time -->
-			<div id="modal3" class="modal">
-
-				<div class="modal-content">
-
-					<h5>Procurar Time</h5>
-					<div class="divider"></div>
-					<h:panelGroup id="procurarTime">
-						<h:form>
-							<div class='row'>
-								<h5 class='center-align col s12 m4 l8 valign-wrapper'>
-									Junte-se a um time com jogadores que também estão interessados
-									em alcançar o topo do ranking!</h5>
-							</div>
-							<h:commandButton
-								class="btn waves-effect waves-light center-align col s12 m4 l8 valign-wrapper"
-								action="#{lolProfileMBean.procurarTime()}" value="Clique Aqui" />
-						</h:form>
-					</h:panelGroup>
-				</div>
-			</div>
-			<!-- Fim Modal Buscar Time -->
-			<!-- Modal Visualizar Time -->
-			<div id="modal4" class="modal">
-
-				<div class="modal-content">
-
-					<h5>Procurar Time</h5>
-					<div class="divider"></div>
+						
+					
+					
+					 <div class="row">
+					 <!--  card Usuário/Profile -->
+       					<div class="col s6 ">
+          					<div class="card-panel deep-purple lighten-5 ">
+	            				<div class="card-content blue-text text-darken-2">
+	              					<span class="card-title flow-text">Dados do Usuário</span>
+	              					
+	              					<ul>
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">person_pin</i> #{lolProfileMBean.user.login}</li>
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">email</i> #{lolProfileMBean.user.email}</li>
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">assignment_ind</i>  #{lolProfileMBean.user.nome}</li>
+		              					</ul>
+	              					
+	              					
+	              					
+	            				</div>
+          					</div>
+        				</div>
+        				<div class="col s6 " >
+          					<div class="card-panel deep-purple lighten-5">
+	            				<div class="card-content blue-text text-darken-2">
+	              					<span class="card-title flow-text">Dados do Jogador</span>
+	              					<c:if test="${not empty lolProfileMBean.user.player}">
+	              					<ul>
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">email</i> #{lolProfileMBean.player.playerName}</li>
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">assignment_ind</i>  #{lolProfileMBean.player.playerLevel}</li>
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">assignment_ind</i>  #{lolProfileMBean.player.region.name()}</li>
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">assignment_ind</i>  #{lolProfileMBean.player.status.name}</li>
+	              						<c:if test="${lolProfileMBean.player.teamID != 0}">
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">assignment_ind</i>  #{lolProfileMBean.player.teamID}</li>
+	              						</c:if>
+	              						<c:if test="${lolProfileMBean.player.teamID == 0}">
+	              						<li> <i class="small material-icons black-text text-darken-2 icon-align ">assignment_ind</i> - </li>
+	              						</c:if>
+	              					</ul>
+	              					</c:if>
+	              					<c:if test="${empty lolProfileMBean.user.player}">
+	              					<p>Você ainda não tem um jogador associado! <a class="modal-trigger" href="#modal1">Faça isso aqui!</a> </p>
+	              					</c:if>
+	            				</div>
+          					</div>
+        				</div>
+        				<!-- fim do card Usuário/ Profile -->
+        				
+        				<!-- Modal Visualizar Time -->
+        				<div class="col s12 " >
+          					<div class="card-panel deep-purple lighten-5">
+	            				<div class="card-content blue-text text-darken-2">
+	              					<span class="card-title flow-text">Dados do Time</span>
+	              					<c:if test="${lolProfileMBean.player.teamID != 0}">
+				
 					<h:panelGroup id="procurarTimeShow">
 						<h:form>
 							<table class = 'centered highlight responsive-table'>
@@ -249,8 +187,143 @@
 							</table>
 						</h:form>
 					</h:panelGroup>
+					</c:if>
 				</div>
 			</div>
+        				
+        				</div>
+      				</div>
+    				
+        				
+      			</div>
+						
+			
+			
+				
+			
+			
+			</div>
+
+			<!--Modal Incluir Profile -->
+			<div id="modal1" class="modal">
+
+				<div class="modal-content">
+
+					<h5>Incluir Profile</h5>
+					<div class="divider"></div>
+					<h:panelGroup id="incluirPerfilForm">
+						<h:form>
+							<div class='row'>
+								<div class='input-field col s6'>
+									<h:inputText class='validate' type="text" name="incluirProfile"
+										id='incluirProfile'
+										value="#{lolProfileMBean.player.playerName}" />
+									<label for="incluirProfile">Game Profile</label>
+								</div>
+								<div class='col s6'>
+									<label for='IncluirRegiaoProfile'>Região</label>
+									<h:selectOneMenu id="IncluirRegiaoProfile"
+										value="#{lolProfileMBean.player.region}">
+										<f:selectItem itemValue="" itemLabel="Selecione" />
+										<f:selectItems value="#{lolProfileMBean.regioes}"
+											var="_regioes" itemLabel="#{_regioes.name}"
+											itemValue="#{_regioes}" />
+									</h:selectOneMenu>
+								</div>
+								<div class='col s6'>
+									<label for='IncluirRoleProfile'>Posição</label>
+									<h:selectOneMenu id="IncluirRoleProfile"
+										value="#{lolProfileMBean.player.role}">
+										<f:selectItem itemValue="" itemLabel="Selecione" />
+										<f:selectItems value="#{lolProfileMBean.roles}" var="_role"
+											itemLabel="#{_role.name}" itemValue="#{_role}" />
+									</h:selectOneMenu>
+								</div>
+								<div class='col s6'>
+									<label for='incluirStatusProfile'>Status</label>
+									<h:selectOneMenu id="incluirStatusProfile"	value="#{lolProfileMBean.player.status}" styleClass="selectContainer" disabled="true">
+										<f:selectItems value="#{lolProfileMBean.playerStatus}"	var="_status" itemLabel="#{_status.name}"	itemValue="#{_status}" />
+									</h:selectOneMenu>
+								</div>
+							</div>
+							<h:commandButton class="btn waves-effect waves-light"
+								action="#{lolProfileMBean.cadastrarPlayer()}" value="Gravar">
+
+							</h:commandButton>
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+			<!-- Fim Modal Incluir Profile -->
+			<!-- Modal Atualizar Profile -->
+			<div id="modal2" class="modal">
+
+				<div class="modal-content">
+
+					<h5>Atualizar Profile</h5>
+					<div class="divider"></div>
+					<h:panelGroup id="atualizarPerfilForm">
+						<h:form>
+							<div class='row'>
+								<div class='input-field col s6'>
+									<h:inputText class='validate' type="text"
+										name="atualizarProfile" id='atualizarProfile'
+										value="#{lolProfileMBean.player.playerName}" />
+									<label for="atualizarProfile">Game Profile</label>
+								</div>
+								
+							</div>
+							<div class='col s6'>
+									<label for='IncluirRegiaoProfile'>Região</label>
+									<h:selectOneMenu id="atualizarRegiaoProfile"
+										value="#{lolProfileMBean.player.region}">
+										<f:selectItem itemValue="" itemLabel="Selecione" />
+										<f:selectItems value="#{lolProfileMBean.regioes}" var="_regioes" itemLabel="#{_regioes.name}" itemValue="#{_regioes}" />
+									</h:selectOneMenu>
+								</div>
+								<div class='col s6'>
+									<label for='IncluirRoleProfile'>Posição</label>
+									<h:selectOneMenu id="atualizarRoleProfile" value="#{lolProfileMBean.player.role}">
+										<f:selectItem itemValue="" itemLabel="Selecione" />
+										<f:selectItems value="#{lolProfileMBean.roles}" var="_role"	itemLabel="#{_role.name}" itemValue="#{_role}" />
+									</h:selectOneMenu>
+								</div>
+								<div class='col s6'>
+									<label for='incluirStatusProfile'>Status</label>
+									<h:selectOneMenu id="incluirStatusProfile"	value="#{lolProfileMBean.player.status}" styleClass="selectContainer">
+										<f:selectItems value="#{lolProfileMBean.playerStatus}" var="_status" itemLabel="#{_status.name}" itemValue="#{_status}" />
+									</h:selectOneMenu>
+								</div>
+							<h:commandButton class="btn waves-effect waves-light"
+								action="#{lolProfileMBean.cadastrarPlayer()}" value="Atualizar" />
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+			<!-- Fim Modal Cadastrar Player -->
+			<!-- Modal Buscar Time -->
+			<div id="modal3" class="modal">
+
+				<div class="modal-content">
+
+					<h5>Procurar Time</h5>
+					<div class="divider"></div>
+					<h:panelGroup id="procurarTime">
+						<h:form>
+							<div class='row'>
+								<h5 class='center-align col s12 m4 l8 valign-wrapper'>
+									Junte-se a um time com jogadores que também estão interessados
+									em alcançar o topo do ranking!</h5>
+							</div>
+							<h:commandButton
+								class="btn waves-effect waves-light center-align col s12 m4 l8 valign-wrapper"
+								action="#{lolProfileMBean.procurarTime()}" value="Clique Aqui" />
+						</h:form>
+					</h:panelGroup>
+				</div>
+			</div>
+			<!-- Fim Modal Buscar Time -->
+			
 			<!-- Fim Modal Visualizar Time -->
 
 		</ui:define>
