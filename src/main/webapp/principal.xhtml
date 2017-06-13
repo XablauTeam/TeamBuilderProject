@@ -100,7 +100,7 @@
           					<div class="card-panel deep-purple lighten-5">
 	            				<div class="card-content blue-text text-darken-2">
 	              					<span class="card-title flow-text">Dados do Time</span>
-	              					<c:if test="${lolProfileMBean.player.teamID != 0}">
+	              					<c:if test="#{lolProfileMBean.player.teamID != 0}">
 				
 					<h:panelGroup id="procurarTimeShow">
 						<h:form>
@@ -122,66 +122,66 @@
 										<c:if test="${not empty lolProfileMBean.team.top}">
 										<td>#{lolProfileMBean.team.top.playerName}</td>
 										</c:if>
-										<c:otherwise>
+										<c:if test="${empty lolProfileMBean.team.top}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 										<c:if test="${not empty lolProfileMBean.team.jungler}">
 										<td>#{lolProfileMBean.team.jungler.playerName}</td>
 										</c:if>
-										<c:otherwise>
+										<c:if test="${empty lolProfileMBean.team.jungler}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 										<c:if test="${not empty lolProfileMBean.team.mid}">
 										<td>#{lolProfileMBean.team.mid.playerName}</td>
 										</c:if>
-										<c:otherwise>
+										<c:if test="${empty lolProfileMBean.team.mid}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 										<c:if test="${not empty lolProfileMBean.team.support}">
 										<td>#{lolProfileMBean.team.support.playerName}</td>
 										</c:if>
-										<c:otherwise>
+										<c:if test="${empty lolProfileMBean.team.support}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 										<c:if test="${not empty lolProfileMBean.team.bottom}">
 										<td>#{lolProfileMBean.team.bottom.playerName}</td>
 										</c:if>
-										<c:otherwise>
+										<c:if test="${empty lolProfileMBean.team.bottom}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 									</tr>
 									<tr>
 									<td>Level</td>
 										<c:if test="${not empty lolProfileMBean.team.top}">
 										<td>#{lolProfileMBean.team.top.playerLevel}</td>
 										</c:if>
-										<c:otherwise>
+										<c:if test="${empty lolProfileMBean.team.top}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 									<c:if test="${not empty lolProfileMBean.team.jungler}">
 										<td>#{lolProfileMBean.team.jungler.playerLevel}</td>
 										</c:if>
-										<c:otherwise>
+										<c:if test="${empty lolProfileMBean.team.jungler}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 									<c:if test="${not empty lolProfileMBean.team.mid}">
 										<td>#{lolProfileMBean.team.mid.playerLevel}</td>
 									</c:if>
-									<c:otherwise>
+									<c:if test="${empty lolProfileMBean.team.mid}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 									<c:if test="${not empty lolProfileMBean.team.support}">
 										<td>#{lolProfileMBean.team.support.playerLevel}</td>
 									</c:if>
-									<c:otherwise>
+									<c:if test="${empty lolProfileMBean.team.support}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 									<c:if test="${not empty lolProfileMBean.team.bottom}">
 										<td>#{lolProfileMBean.team.bottom.playerLevel}</td>
 									</c:if>
-									<c:otherwise>
+									<c:if test="${empty lolProfileMBean.team.bottom}">
 										<td> - </td>
-										</c:otherwise>
+										</c:if>
 									</tr>
 								</tbody>
 							</table>

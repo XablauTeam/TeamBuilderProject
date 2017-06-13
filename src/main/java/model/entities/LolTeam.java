@@ -1,6 +1,7 @@
 package model.entities;
 
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
@@ -9,23 +10,23 @@ import javax.persistence.Table;
 @Table(name="lolteam")
 public class LolTeam extends AbstractTeam {
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "top")
 	private LolPlayer top;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "jungler")
 	private LolPlayer jungler;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "mid")
 	private LolPlayer mid;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "support")
 	private LolPlayer support;
 	
-	@OneToOne
+	@OneToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "bottom")
 	private LolPlayer bottom;
 	

@@ -70,5 +70,9 @@ public class LolTeamBean {
 		}
 		return false;
 	}
+	
+	public LolTeam findTeamByID(Integer playerID){
+		return lolTeamService.findById(playerID);
+	}
 
 }
