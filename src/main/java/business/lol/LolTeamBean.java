@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import business.PlayerBean;
 import business.PlayerStatus;
 import business.TeamStatus;
 import business.exceptions.CannotInsertException;
@@ -23,7 +24,7 @@ public class LolTeamBean {
 	@EJB
 	private LolTeamProcessor lolTeamProcessor;
 	@EJB
-	private LolPlayerService lolPlayerService;
+	private PlayerBean playerBean;
 	
 	
 	
@@ -52,7 +53,7 @@ public class LolTeamBean {
 		lolTeamService.update((LolTeam) team);
 		player.setTeamID(team.getIdTime());
 		player.setStatus(PlayerStatus.IN_TEAM);
-		lolPlayerService.update((LolPlayer)player);
+		playerBean.atualizarPlayer((LolPlayer)player);
 	}
 
 	public boolean playerHasTeam(AbstractPlayer player) {
