@@ -63,12 +63,11 @@ public class LolProfileMBean extends GenericMBean {
 	public String procurarTime() {
 		try {
 			if(user.getPlayer().getTeamID() != 0)
-				teamBean.removePlayerFromTeam(user.getPlayer());
-			team = (LolTeam) teamBean.findTeam(user.getPlayer());
+				teamBean.removePlayerFromTeam(player);
+			team = (LolTeam) teamBean.findTeam(player);
 			if(team == null)
-				team = (LolTeam) teamBean.createNewTeam(user.getPlayer());
-			teamBean.insertPlayerInTeam(user.getPlayer(), team);
-			
+				team = (LolTeam) teamBean.createNewTeam(player);
+			teamBean.insertPlayerInTeam(player, team);
 		} catch (Exception e) {
 			incluirErro(e.getMessage());
 		}

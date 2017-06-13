@@ -5,11 +5,14 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import business.PlayerStatus;
 import business.TeamStatus;
 import business.exceptions.CannotInsertException;
 import model.entities.AbstractPlayer;
 import model.entities.AbstractTeam;
+import model.entities.LolPlayer;
 import model.entities.LolTeam;
+import model.persistence.service.LolPlayerService;
 import model.persistence.service.LolTeamService;
 
 @Stateless
@@ -19,7 +22,11 @@ public class LolTeamBean {
 	private LolTeamService lolTeamService;
 	@EJB
 	private LolTeamProcessor lolTeamProcessor;
-
+	@EJB
+	private LolPlayerService lolPlayerService;
+	
+	
+	
 	public AbstractTeam findTeam(AbstractPlayer player) {
 		ArrayList<LolTeam> teamList = (ArrayList<LolTeam>) lolTeamService.findAll();
 		if (!teamList.isEmpty()) {
@@ -42,8 +49,10 @@ public class LolTeamBean {
 
 	public void insertPlayerInTeam(AbstractPlayer player, AbstractTeam team) throws CannotInsertException {
 		lolTeamProcessor.insertPlayerInTeam(player, team);
-		player.setTeamID(team.getIdTime());
 		lolTeamService.update((LolTeam) team);
+		player.setTeamID(team.getIdTime());
+		player.setStatus(PlayerStatus.IN_TEAM);
+		lolPlayerService.update((LolPlayer)player);
 	}
 
 	public boolean playerHasTeam(AbstractPlayer player) {

@@ -48,5 +48,9 @@ public class PlayerBean {
 		}
 		
 	}
+	
+	public void atualizarPlayer(LolPlayer player){
+		lolPlayerService.update(player);
+	}
 
 }
