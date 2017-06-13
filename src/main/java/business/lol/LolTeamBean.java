@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
+import business.TeamStatus;
 import business.exceptions.CannotInsertException;
 import model.entities.AbstractPlayer;
 import model.entities.AbstractTeam;
@@ -20,10 +21,11 @@ public class LolTeamBean {
 	private LolTeamProcessor lolTeamProcessor;
 
 	public AbstractTeam findTeam(AbstractPlayer player) {
-		ArrayList<LolTeam> teamList = (ArrayList<LolTeam>) lolTeamService.findIncompleteTeams();
+		ArrayList<LolTeam> teamList = (ArrayList<LolTeam>) lolTeamService.findAll();
 		if (!teamList.isEmpty()) {
 			for (LolTeam teamAnalyzed : teamList) {
-				if (lolTeamProcessor.isRoleNeeded(teamAnalyzed, player)) {
+				if (teamAnalyzed.getStatus() != TeamStatus.COMPLETE && 
+						lolTeamProcessor.isRoleNeeded(teamAnalyzed, player)) {
 					return teamAnalyzed;
 				}
 			}

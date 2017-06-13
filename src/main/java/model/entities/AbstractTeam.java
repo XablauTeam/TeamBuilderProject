@@ -6,13 +6,14 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Inheritance;
+import javax.persistence.InheritanceType;
 import javax.persistence.MappedSuperclass;
-import javax.persistence.PrimaryKeyJoinColumn;
 
 import business.TeamStatus;
 
 @MappedSuperclass
-@PrimaryKeyJoinColumn(name = "id_time")
+@Inheritance(strategy=InheritanceType.JOINED)
 public abstract class AbstractTeam {
 
 	@Id

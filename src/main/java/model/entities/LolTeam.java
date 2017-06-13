@@ -8,27 +8,27 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
-@Table(name="LOLTEAM")
+@Table(name="lolteam")
 public class LolTeam extends AbstractTeam {
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "top", referencedColumnName = "id_player")
+	@OneToOne
+	@JoinColumn(name = "top")
 	private LolPlayer top;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "jungler", referencedColumnName = "id_player")
+	@OneToOne
+	@JoinColumn(name = "jungler")
 	private LolPlayer jungler;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "mid", referencedColumnName = "id_player")
+	@OneToOne
+	@JoinColumn(name = "mid")
 	private LolPlayer mid;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "support", referencedColumnName = "id_player")
+	@OneToOne
+	@JoinColumn(name = "support")
 	private LolPlayer support;
 	
-	@OneToOne(fetch=FetchType.EAGER)
-	@JoinColumn(name = "bottom", referencedColumnName = "id_player")
+	@OneToOne
+	@JoinColumn(name = "bottom")
 	private LolPlayer bottom;
 	
 	public LolTeam(){

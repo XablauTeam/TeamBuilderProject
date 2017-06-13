@@ -63,7 +63,6 @@ public class LolTeamProcessor {
 		default:
 			break;
 		}
-		lolPlayer.setTeamID(0);
 
 	}
 
