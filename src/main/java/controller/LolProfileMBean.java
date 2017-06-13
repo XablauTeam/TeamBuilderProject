@@ -15,11 +15,9 @@ import business.exceptions.BusinessException;
 import business.lol.LolRegioes;
 import business.lol.LolRole;
 import business.lol.LolTeamBean;
-import model.entities.AbstractTeam;
 import model.entities.LolPlayer;
 import model.entities.LolTeam;
 import model.entities.User;
-import model.persistence.service.UserService;
 
 @ManagedBean(name = "lolProfileMBean")
 @SessionScoped
@@ -43,8 +41,8 @@ public class LolProfileMBean extends GenericMBean {
 	@PostConstruct
 	public void onLoad() {
 		try {
-			player = playerBean.findById(user.getIdUsuario());
-			team = teamBean.findTeamByID(player.getTeamID());
+			this.player = playerBean.findById(user.getIdUsuario());
+			team = teamBean.findTeamByID(this.player.getTeamID());
 		} catch (BusinessException e) {
 			player = new LolPlayer();
 		}
