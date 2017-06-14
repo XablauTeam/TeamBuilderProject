@@ -25,7 +25,7 @@ public class PlayerBean {
 		if (ab != null)
 			return ab;
 		else
-			throw new BusinessException("Player não encotrado.");
+			throw new BusinessException("Player não encontrado.");
 	}
 
 	public void incluirPlayer(User user, LolPlayer lolPlayer) throws ConnectionException {
@@ -47,6 +47,10 @@ public class PlayerBean {
 			throw new ConnectionException("Game Profile não localizado.");
 		}
 		
+	}
+	
+	public void atualizarPlayer(LolPlayer player){
+		lolPlayerService.update(player);
 	}
 
 }
